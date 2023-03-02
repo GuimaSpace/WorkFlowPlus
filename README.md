@@ -1,5 +1,5 @@
 # WorkFlowPlus
-![Size](https://img.shields.io/github/languages/code-size/GuimaSpace/WorkFlowPlus)
+![Size](https://img.shields.io/github/languages/code-size/GuimaSpace/WorkFlowPlus?style=flat-square)
 
 ## About the project
 WorkFlow Plus is a comprehensive WEB-based software designed to help businesses with their internal organization. It features a powerful window manager that allows users to open and manage multiple windows, such as Services, Profile, Configuration, and more, without the need to reload or experience any loading time. The main interface, called WorkStation, provides an easy-to-use and user-friendly interface for organizing and managing all the open windows.
