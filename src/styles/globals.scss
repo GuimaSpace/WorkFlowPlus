@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        @apply p-0 m-0 box-content;
+    }
+    body {
+        @apply bg-workflow bg-cover
+    }
+}
