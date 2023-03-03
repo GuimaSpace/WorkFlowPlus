@@ -14,13 +14,13 @@ export default function Navbar() {
     return (
         <div className='flex justify-between items-center w-screen h-12 bg-zinc-700 px-20 shadow-2xl drop-shadow-sm'>
             <div className='flex items-center space-x-5'>
-                <div><AiFillZhihuCircle className='text-4xl font-bold' /></div>
+                <div><AiFillZhihuCircle className='text-white text-4xl font-bold' /></div>
                 <div>
-                    <button className='font-semibold text-sm active:text-zinc-400'>Ordem de Serviço</button>
+                    <button className='font-semibold text-white text-sm active:text-zinc-400'>Ordem de Serviço</button>
                 </div>
             </div>
             <div>
-                <FaRegUserCircle className='text-3xl font-bold' />
+                <FaRegUserCircle className='text-white text-3xl font-bold' />
             </div>
         </div >
     )
