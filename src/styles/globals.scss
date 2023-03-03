@@ -4,9 +4,9 @@
 
 @layer base {
     html {
-        @apply p-0 m-0 box-content;
+        @apply p-0 m-0 box-content text-white
     }
     body {
-        @apply bg-workflow bg-cover
+        @apply bg-zinc-50 bg-cover
     }
 }

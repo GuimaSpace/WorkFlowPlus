@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { AiFillZhihuCircle } from 'react-icons/ai'
+import { FaRegUserCircle } from 'react-icons/fa'
 import dynamic from 'next/dynamic';
 const WinBox = dynamic(() => import('react-winbox'), { ssr: false });
 
@@ -10,30 +12,16 @@ export default function Navbar() {
     }
 
     return (
-        <div className="flex flex-col w-screen h-12 bg-zinc-700">
-            <button onClick={() => { windowHandler() }}>Ordem de Serviço</button>
-            {
-                openWindow && (
-                    <WinBox
-                        title={'WorkFlow Plus by IonSolution'}
-                        noMin={false}
-                        noMax={false}
-                        noFull={true}
-                        noClose={false}
-                        width={1500}
-                        height={500}
-                        x="center"
-                        y="center"
-                        top={0}
-                        right={0}
-                        bottom={0}
-                        left={0}
-                        hide={false}
-                        className={''}
-                        onclose={() => { setOpenWindow(false) }} >
-                    </WinBox>
-                )
-            }
-        </div>
+        <div className='flex justify-between items-center w-screen h-12 bg-zinc-700 px-20 shadow-2xl drop-shadow-sm'>
+            <div className='flex items-center space-x-5'>
+                <div><AiFillZhihuCircle className='text-4xl font-bold' /></div>
+                <div>
+                    <button className='font-semibold text-sm active:text-zinc-400'>Ordem de Serviço</button>
+                </div>
+            </div>
+            <div>
+                <FaRegUserCircle className='text-3xl font-bold' />
+            </div>
+        </div >
     )
 }

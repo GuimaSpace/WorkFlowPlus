@@ -16,3 +16,13 @@ export interface UserInterface {
         role: UserRole;
     };
 }
+
+export interface ServiceInterface{
+    id: string;
+    title: string;
+    description: string;
+    priority:[1,2,3,4];
+
+    
+
+}
