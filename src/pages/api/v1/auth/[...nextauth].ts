@@ -20,20 +20,19 @@ const authOptions: NextAuthOptions = {
                 //Fing user por db
                 try {
                     const userDataFromDb = await FirebaseUserValidate({ email, password }) as UserInterface;
-                    return { id: "0" }
+                    return userDataFromDb
                 } catch (err) {
                     throw new Error(`${JSON.stringify(err)}`);
 
                 }
             }
-        })
+        }),
     ],
     pages: {
         signIn: "/AuthPages/login"
     },
     callbacks: {
         async session({ session, user, token }) {
-
             return session
         }
     }
