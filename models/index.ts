@@ -16,14 +16,3 @@ export interface UserInterface {
         role: UserRole;
     };
 }
-
-export interface ServiceInterface{
-    id: string;
-    title: string;
-    description: string;
-    place: string;
-    created_date: Date;
-    requester: string;
-    priority:[1,2,3,4,5];
-    status:[1,2,3];
-}

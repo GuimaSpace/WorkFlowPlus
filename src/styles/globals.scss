@@ -1,12 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-    html {
-        @apply p-0 m-0 box-content text-black
-    }
-    body {
-        @apply bg-zinc-50 bg-cover
-    }
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-image: url(../../public/bgws1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
