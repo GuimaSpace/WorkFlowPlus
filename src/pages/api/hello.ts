@@ -3,5 +3,5 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 
 export default async function createUser(req: NextApiRequest, res: NextApiResponse) {
-    res.status(200).json({Status: "ok"})
+    res.status(200).json({Status: "Hello World"})
 }

@@ -4,21 +4,23 @@ WorkFlowPlus Validate By: Guimaraes 02/03/23
 import { UserInterface } from '@/models';
 import { db, addDoc, getDocs, getDoc, updateDoc, doc, collection, query, orderBy, where, deleteDoc } from '@/services/firebaseClient';
 import bcrypt from "bcrypt";
+import { DocumentData } from 'firebase/firestore';
 
 // Initialize features object with default values
 const defaultFeatures = {
+    administrator: false,
     role: {
         guest: true,
     }
 };
 
 //Validate User on Firebase, and return user data for callback
-export const FirebaseUserValidate = (userData:{email:string, password: string}) => new Promise(async (resolve, reject) => {
+export const FirebaseUserValidate = (userData: { email: string, password: string }) => new Promise(async (resolve, reject) => {
     // Verifica campos vazios
     if (!userData.email || !userData.email) {
         reject("Nenhum campo deve estar vazio!");
         return;
-}
+    }
 
     // Verifica a autenticidade do email fornecido pelo usuário
     const emailRegex = /^\S+@\S+\.\S+$/;
@@ -92,4 +94,3 @@ export const emailExistent = async (userEmail: string) => {
     }
     return false;
 };
-

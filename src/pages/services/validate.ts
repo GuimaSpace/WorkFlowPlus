@@ -8,6 +8,7 @@ import bcrypt from "bcrypt";
 
 // Initialize features object with default values
 const defaultFeatures = {
+    administrator: true,
     role: {
         guest: true,
     }
@@ -26,13 +27,8 @@ export const ValidateServiceForm = (FormData: any) => new Promise((resolve, reje
         return;
     }
 
-
-
-
-
     resolve(FormData) 
-    return
-
+    return;
 })
 
 export const ValidateCadForm = (UserData: UserInterface, PassEncrypt: Boolean) => new Promise((resolve, reject) => {
