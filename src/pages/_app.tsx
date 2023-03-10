@@ -3,8 +3,13 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import '@/styles/globals.scss'
 import type { AppProps } from 'next/app'
-import { useRef, useState } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <Component {...pageProps} />
+    </>
+
+
+  )
 }

@@ -14,9 +14,9 @@ const defaultFeatures = {
     }
 };
 
-export const ValidateServiceForm = (FormData: any) => new Promise((resolve, reject) => {
+export const ValidateServiceForm = (FormData: ServiceInterface) => new Promise((resolve, reject) => {
     //Verifica se os campos estão vazios
-    if (!FormData.title || !FormData.description || !FormData.place || !FormData.created_date || !FormData.requester) {
+    if (!FormData.title || !FormData.description || !FormData.place || !FormData.created_date || !FormData.requester || !FormData.priority) {
         reject("Nenhum campo deve estar vazio")
         return
     }
@@ -27,7 +27,7 @@ export const ValidateServiceForm = (FormData: any) => new Promise((resolve, reje
         return;
     }
 
-    resolve(FormData) 
+    resolve(FormData)
     return;
 })
 

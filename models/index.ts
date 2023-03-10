@@ -1,4 +1,5 @@
 export interface UserRole {
+    administrator?: boolean;
     senior?: boolean;
     worker?: boolean;
     guest?: boolean;
@@ -12,20 +13,6 @@ export interface UserInterface {
     password: string;
     image: string;
     features: {
-        administrator?: boolean;
         role: UserRole;
     };
-}
-
-export interface ServiceInterface{
-    data: any;
-    id: string;
-    title: string;
-    description: string;
-    place: string;
-    created_date: string;
-    requester: string;
-    priority:[1,2,3,4];
-    status:[1,2,3];
-    
 }

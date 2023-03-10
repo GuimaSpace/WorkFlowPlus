@@ -6,24 +6,25 @@ import React, { useEffect, useRef, useState } from 'react';
 import Head from "next/head";
 import { BiHomeAlt2 } from 'react-icons/bi';
 import { RiSuitcaseLine } from 'react-icons/ri';
-import { AiOutlineUser } from 'react-icons/ai';
+import { MdSupportAgent } from 'react-icons/md';
 import { IoSettingsOutline } from 'react-icons/io5'
 import api from "./services/api";
 import { ServiceInterface } from "@/models";
+import ServiceList from "./components/ServiceList";
+import SupportMenu from "./components/supportMenu";
 
-interface PageProps {
-  resServices:[]
+interface Props {
+  services: ServiceInterface[];
+  totalPages: number;
 }
 
-
-const Home: NextPage<PageProps> = ({ resServices }) => {
-  console.log(resServices)
+const Home: NextPage<Props> = ({ services, totalPages }: Props) => {
   /* useState do WinboxJs */
-  const ref = useRef();
   /* Variaveis de janelas WinBox */
   const [OpenOsWindow, setOpenOsWindow] = useState(false)
   const [OpenCreaditsWindow, setOpenCreaditsWindow] = useState(false)
   const [OpenConfigWindow, setOpenConfigWindow] = useState(false)
+  const [OpenSupportWindow, setSupportOpen] = useState(false)
   const [WinboxColor, setWinboxColor] = useState<string>()
 
   return (
@@ -43,17 +44,26 @@ const Home: NextPage<PageProps> = ({ resServices }) => {
             <RiSuitcaseLine size={36} className='text-white' />
           </button>
 
+          <button onClick={() => { setSupportOpen(true) }} className={OpenSupportWindow ? 'navItemActive' : 'navItem'}>
+            <MdSupportAgent size={36} className='text-white' />
+          </button>
+
+
+
           <button onClick={() => { setOpenConfigWindow(true) }} className={OpenConfigWindow ? 'navItemActive mt-auto' : 'navItem mt-auto'}>
             <IoSettingsOutline size={36} className='text-white' />
           </button>
 
-          <a onClick={() => { setOpenCreaditsWindow(true) }}>
-            <i className=""></i>
-          </a>
+
+
+
           <a onClick={() => { setOpenConfigWindow(true) }}>
             <i className=""></i>
           </a>
         </div>
+
+
+        {/* All Window Content */}
         {OpenOsWindow && (
           <WinBox
             title={'Serviços'}
@@ -80,43 +90,36 @@ const Home: NextPage<PageProps> = ({ resServices }) => {
               });
             }}
           >
-            <div>
-              <table className="table table-dark table-hover">
-                <thead>
+            <ServiceList services={services} totalPages={totalPages} />
+          </WinBox>
+        )}
 
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Titulo</th>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Local</th>
-                    <th scope="col">Data Criado</th>
-                    <th scope="col">Requisitor</th>
-                    <th scope="col">prioridade</th>
-                    <th scope="col">status</th>
-                    <th scope="col">Ação</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {resServices.map((service: ServiceInterface) => {
-                    return (
-                      <tr>
-                        <th scope="row">{service.id}</th>
-                        <td>{service.title}</td>
-                        <td>{service.description}</td>
-                        <td>{service.place}</td>
-                        <td>{service.created_date}</td>
-                        <td>{service.requester}</td>
-
-                        <td><span className="text-center badge text-bg-primary">Baixa</span></td>
-                        <td><span className="badge text-bg-secondary">Aguardando</span></td>
-                        <td><button type="button" className="btn btn-primary">Começar</button> <button type="button" className="btn btn-success" disabled>Concluir</button></td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </table>
-
-            </div>
+        {OpenSupportWindow && (
+          <WinBox
+            title={'Suporte'}
+            noMin={false}
+            noMax={false}
+            noFull={true}
+            noClose={false}
+            width={1500}
+            height={500}
+            x="center"
+            y="center"
+            top={0}
+            right={0}
+            bottom={0}
+            left={80}
+            hide={false}
+            background={WinboxColor}
+            className={''}
+            onclose={() => {
+              // destroying actions while `onclose` must be wrapped within `setTimeout`
+              setTimeout(() => {
+                setSupportOpen(false);
+              });
+            }}
+          >
+            <SupportMenu/>
           </WinBox>
         )}
 
@@ -157,7 +160,7 @@ const Home: NextPage<PageProps> = ({ resServices }) => {
             noFull={true}
             noResize={true}
             noClose={false}
-            width={500}
+            width={400}
             height={500}
             x="center"
             y="center"
@@ -215,10 +218,17 @@ const Home: NextPage<PageProps> = ({ resServices }) => {
   )
 }
 
-Home.getInitialProps = async (context: NextPageContext): Promise<PageProps> => {
-  const res = await api.get('/services')
-  const resServices = await res.data
-  return { resServices };
-};
 
 export default Home
+
+// essa função é executada no servidor e retorna as propriedades iniciais para a página
+export async function getServerSideProps() {
+  const { data } = await api.get('/services');
+  return {
+    props: {
+      services: data.data,
+      totalPages: data.totalPages,
+    },
+  };
+}
+

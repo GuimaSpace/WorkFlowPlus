@@ -3,13 +3,15 @@ import { getFirestore, addDoc, collection, getDocs, getDoc, doc, updateDoc, quer
 import 'firebase/analytics'
 
 export const firebaseConfig = {
-    apiKey: "AIzaSyCJosQy9RNBrZXrorBjLACoQYjQ4ISKZUk",
-    authDomain: "workflowplus-f03ff.firebaseapp.com",
-    projectId: "workflowplus-f03ff",
-    storageBucket: "workflowplus-f03ff.appspot.com",
-    messagingSenderId: "533738013326",
-    appId: "1:533738013326:web:3d5635bae3218bc4bb7fdf",
-    measurementId: "G-4F4FD1MB7P"
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY_ID,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    authDomain: `${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.firebaseapp.com`,
+    databaseURL: `${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.firebaseio.com`,
+    storageBucket: `${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.appspot.com`,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+
 };
 
 const app = firebase.initializeApp(firebaseConfig)
