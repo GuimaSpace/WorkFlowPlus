@@ -19,3 +19,5 @@ One of the key features of WorkFlow Plus is its ability to operate seamlessly wi
 The backend of WorkFlow Plus operates through API's and API's Rest, enabling efficient communication and data exchange between the frontend and backend. The overall interface is designed to be user-friendly, making it easy for businesses to quickly learn and integrate into their daily operations.
 
 Overall, WorkFlow Plus is a comprehensive and efficient software solution for businesses looking to streamline their internal organization and improve their productivity.
+
+## How to Run
