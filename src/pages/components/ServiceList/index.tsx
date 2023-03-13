@@ -32,7 +32,7 @@ const ServiceList = ({ services, totalPages }: Props) => {
                 setLoading(false);
                 setError(true);
                 console.error(error);
-            });
+            })
     }, [currentPage, limit]);
 
     const handlePageClick = (page: number) => {
@@ -64,21 +64,53 @@ const ServiceList = ({ services, totalPages }: Props) => {
                     <span className="visually-hidden">Loading...</span>
                 </div>
             ) : error ? (
-                <p>An error has occurred.</p>
+                <p>:( um erro interno ocorreu, confira o console e mande um e-mail para equipe técnica do WorkFlow Plus</p>
             ) : servicesData.length === 0 ? (
-                <div className="text-center min-vh-100 w-100 w-md-50">
+                <div className="text-center">
                     <p className='fs-1'>Nenhum serviço foi cadastrado.</p>
                     <hr />
                     <p className='fs-3'>Assim que um superior lançar um novo serviço irá aparecer aqui!</p>
                 </div>
             ) : (
-                <ul>
-                    {servicesData.map((service) => (
-                        <li key={service.id}>{service.title}</li>
-                    ))}
-                </ul>
+
+                    <>
+                                    <div className="pagination">{renderPagination()}</div>
+
+                    <table className="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Código</th>
+                                <th scope="col">Titulo</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col">Local</th>
+                                <th scope="col">Data Criado</th>
+                                <th scope="col">Requisitor</th>
+                                <th scope="col">prioridade</th>
+                                <th scope="col">status</th>
+                                <th scope="col">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {servicesData.map((service: ServiceInterface) => {
+                                return (
+                                    <tr>
+                                        <th scope="row">{service.id}</th>
+                                        <td>{service.title}</td>
+                                        <td>{service.description}</td>
+                                        <td>{service.place}</td>
+                                        <td>{service.created_date}</td>
+                                        <td>{service.requester}</td>
+                                        <td><span className="text-center badge text-bg-primary">Baixa</span></td>
+                                        <td><span className="badge text-bg-secondary">Aguardando</span></td>
+                                        <td><button type="button" className="btn btn-primary">Começar</button><button type="button" className="btn btn-success" disabled>Concluir</button></td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                    </>
             )}
-            <div className="pagination">{renderPagination()}</div>
+
         </div>
     );
 };
